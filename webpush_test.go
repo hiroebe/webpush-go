@@ -36,7 +36,7 @@ func TestSendNotificationToURLEncodedSubscription(t *testing.T) {
 	resp, err := SendNotification([]byte("Test"), getURLEncodedTestSubscription(), &Options{
 		HTTPClient:      &testHTTPClient{},
 		RecordSize:      3070,
-		Subscriber:      "<EMAIL@EXAMPLE.COM>",
+		Subject:         "<EMAIL@EXAMPLE.COM>",
 		Topic:           "test_topic",
 		TTL:             0,
 		Urgency:         "low",
@@ -59,7 +59,7 @@ func TestSendNotificationToURLEncodedSubscription(t *testing.T) {
 func TestSendNotificationToStandardEncodedSubscription(t *testing.T) {
 	resp, err := SendNotification([]byte("Test"), getStandardEncodedTestSubscription(), &Options{
 		HTTPClient:      &testHTTPClient{},
-		Subscriber:      "<EMAIL@EXAMPLE.COM>",
+		Subject:         "<EMAIL@EXAMPLE.COM>",
 		Topic:           "test_topic",
 		TTL:             0,
 		Urgency:         "low",
@@ -81,7 +81,7 @@ func TestSendNotificationToStandardEncodedSubscription(t *testing.T) {
 func TestSendTooLargeNotification(t *testing.T) {
 	_, err := SendNotification([]byte(strings.Repeat("Test", int(MaxRecordSize))), getStandardEncodedTestSubscription(), &Options{
 		HTTPClient:      &testHTTPClient{},
-		Subscriber:      "<EMAIL@EXAMPLE.COM>",
+		Subject:         "<EMAIL@EXAMPLE.COM>",
 		Topic:           "test_topic",
 		TTL:             0,
 		Urgency:         "low",

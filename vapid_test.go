@@ -2,7 +2,6 @@ package webpush
 
 import (
 	"encoding/base64"
-	"fmt"
 	"strings"
 	"testing"
 	"time"
@@ -53,11 +52,10 @@ func TestVAPID(t *testing.T) {
 
 	// Check the claims on the token
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		expectedSub := fmt.Sprintf("mailto:%s", sub)
-		if expectedSub != claims["sub"] {
+		if sub != claims["sub"] {
 			t.Fatalf(
-				"Incorreect mailto, expected=%s, got=%s",
-				expectedSub,
+				"Incorrect subject, expected=%s, got=%s",
+				sub,
 				claims["sub"],
 			)
 		}

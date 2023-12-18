@@ -44,7 +44,7 @@ type HTTPClient interface {
 type Options struct {
 	HTTPClient      HTTPClient // Will replace with *http.Client by default if not included
 	RecordSize      uint32     // Limit the record size
-	Subscriber      string     // Sub in VAPID JWT token
+	Subject         string     // Sub in VAPID JWT token
 	Topic           string     // Set the Topic header to collapse a pending messages (Optional)
 	TTL             int        // Set the TTL on the endpoint POST request
 	Urgency         Urgency    // Set the Urgency header to change a message priority (Optional)
@@ -222,7 +222,7 @@ func SendNotificationWithContext(ctx context.Context, message []byte, s *Subscri
 	// Get VAPID Authorization header
 	vapidAuthHeader, err := getVAPIDAuthorizationHeader(
 		s.Endpoint,
-		options.Subscriber,
+		options.Subject,
 		options.VAPIDPublicKey,
 		options.VAPIDPrivateKey,
 		expiration,

@@ -19,7 +19,7 @@ func main() {
 
 	// Send Notification
 	resp, err := webpush.SendNotification([]byte("Test"), s, &webpush.Options{
-		Subscriber:      "example@example.com", // Do not include "mailto:"
+		Subject:         "mailto:example@example.com",
 		VAPIDPublicKey:  vapidPublicKey,
 		VAPIDPrivateKey: vapidPrivateKey,
 		TTL:             30,
